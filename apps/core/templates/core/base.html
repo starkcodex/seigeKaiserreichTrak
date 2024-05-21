@@ -16,7 +16,7 @@
         <div id="navbar-app">
             <nav class="navbar{% if request.user.is_authenticated %} is-dark{% else %} is-light{% endif %}">
                 <div class="navbar-brand">
-                    <a href="/" class="navbar-item"><strong>Minutos</strong></a>
+                    <a href="/" class="navbar-item"><strong>Kitos</strong></a>
                 </div>
 
                 <div class="navbar-menu">
@@ -25,7 +25,7 @@
                             <a href="{% url 'plans' %}" class="navbar-item">Plans</a>
                         {% else %}
                             <a href="#" class="navbar-item">Dashboard</a>
-                            <a href="#" class="navbar-item">Projects</a>
+                            <a href="{% url 'project:projects' %}" class="navbar-item">Projects</a>
                             <div class="navbar-item" v-if="!trackingTime">
                                 <div class="buttons">
                                     <a class="button is-success" @click="startTimer()">
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                         {% endif %}
-
+                        
                         <div class="navbar-item">
                             <div class="buttons">
                                 {% if request.user.is_authenticated %}

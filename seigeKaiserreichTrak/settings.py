@@ -1,4 +1,3 @@
-
 import os
 from pathlib import Path
 
@@ -20,14 +19,14 @@ ALLOWED_HOSTS = []
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'myaccount'
-LOGOUT_REDIRECT_URL = 'frontpage'
+LOGOUT_REDIRECT_URL = 'login'
 
-# Application definition
-
+# Application 
 INSTALLED_APPS = [
+    'apps.userprofile',
     'apps.core',
     'apps.team',
-    'apps.userprofile',
+    'apps.project',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -83,7 +82,6 @@ DATABASES = {
     }
 
 }
-
 
 
 # Password validation

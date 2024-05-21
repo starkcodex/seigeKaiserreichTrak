@@ -1,5 +1,4 @@
 import random
-
 from .models import Team
 from datetime import datetime
 from django.conf import settings
@@ -24,7 +23,6 @@ def activate_team(request, team_id):
     userprofile.save()
 
     messages.info(request, 'The team was activated')
-
     return redirect('team:team', team_id=team.id)
 
 
@@ -37,7 +35,6 @@ def add(request):
             team = Team.objects.create(title=title, created_by=request.user)
             team.members.add(request.user)
             team.save()
-            
             userprofile = request.user.userprofile
             userprofile.active_team_id = team.id
             userprofile.save()
@@ -49,15 +46,14 @@ def add(request):
 
 @login_required
 def edit(request):
-    team = get_object_or_404(Team, pk=request.user.userprofile.active_team_id, status=Team.ACTIVE, members__in=[request.user])
+    team = get_object_or_404(Team, pk=request.user.userprofile.active_team_id, status=Team.ACTIVE, 
+                                members__in=[request.user])
 
     if request.method == 'POST':
         title = request.POST.get('title')
-
         if title:
             team.title = title
             team.save()
-
             messages.info(request, 'The changes was saved')
             return redirect('team:team', team_id=team.id)
     return render(request, 'team/edit.html', {'team': team})
